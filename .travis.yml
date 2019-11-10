@@ -1,0 +1,27 @@
+# Ubuntu 18.04
+dist: bionic
+
+language: python
+branches:
+  only:
+  - master
+python:
+- '3.6'
+install:
+- pip install -U pip
+script:
+- mkdir _build
+- python run.py > _build/index.html
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: _/build
+  on:
+    branch: master
+  notifications:
+    email:
+      recipients:
+        - nobody@localhost
+      on_success: never
+      on_failure: always
