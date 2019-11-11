@@ -13,9 +13,9 @@ for r in c.fetchall():
 
     if ext in ['.mp4', '.ogg', 'webm']:
        #print('<source src="{}" style="width:200px">'.format(url))
-       print('<video width="200" controls><source src="{}" type="video/{}">no browser support</video>'.format(url,ext[1:]))
+       print('<video height="200" controls><source src="{}" type="video/{}">no browser support</video>'.format(url,ext[1:]))
     else:
-       print('<img src="{}" style="width:200px">'.format(url))
+       print('<img src="{}" style="height:200px">'.format(url))
 
 print("</html>")
 
