@@ -2,9 +2,11 @@
 
 import sqlite3
 import argparse
+import os
 
 db_filename = 'data.db'
 db_table = 'urls'
+file_dir = 'images/'
 
 def add_to_db(url=None, tag=''):
     conn = sqlite3.connect(db_filename)
@@ -18,6 +20,12 @@ def del_url(url=None, tag=''):
     conn = sqlite3.connect(db_filename)
     c = conn.cursor()
     c.execute("DELETE FROM " + db_table + " where url = ?", (url,))
+    try:
+        fpath = os.path.join(file_dir, os.path.basename(url))
+        print("trying to delete ",fpath," ...")
+        os.remove(fpath)
+    except:
+        pass
     conn.commit()
     conn.close()
 
